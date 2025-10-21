@@ -8,8 +8,12 @@ module AcceptanceTests
       bundle_version_of('rails')
     end
 
-    def rails_6_x?
-      rails_version =~ '~> 6.0'
+    def rails_7_2_x?
+      rails_version =~ '~> 7.2'
+    end
+
+    def rails_gte_7_2?
+      Gem::Version.new(rails_version) >= Gem::Version.new('7.2.0')
     end
   end
 end

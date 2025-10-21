@@ -30,6 +30,7 @@ module AcceptanceTests
       fs.clean
       fs.create
       run_command_isolated_from_bundle! 'bundle init'
+      add_gem 'mutex_m', require: false if rails_gte_7_2?
     end
 
     def add_shoulda_matchers_to_project(options = {})
@@ -82,7 +83,7 @@ module AcceptanceTests
         bundle.remove_gem 'web-console'
       end
 
-      add_gem 'net-smtp', require: false if rails_6_x? && ruby_gt_3_1?
+      add_gem 'mutex_m', require: false if rails_gte_7_2?
 
       fs.open('config/database.yml', 'w') do |file|
         YAML.dump(database.config.load_file, file)
